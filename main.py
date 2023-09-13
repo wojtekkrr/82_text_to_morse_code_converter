@@ -31,10 +31,25 @@ def letter_to_morse_code(letter):
             return index
         index += 1
 
+#Komunikaty dla urzytkownika:
+print(f'Można korzystać z następujących znaków:\n{alphabet}')
+sentence = input("Podaj zdanie do przetłumaczenia na kod Morse'a:\n").upper()
 
-while True:
-    letter = input("Podaj zdanie do przetłumaczenia na kod Morse'a").upper()
-    try:
-        print(f'{letter} - {morse_code[letter_to_morse_code(letter)]}')
-    except TypeError:
-        print("Zastosowano niedozwolony znak")
+#Rozbicie zdania na litery:
+letters = []
+for letter in sentence:
+    letters.append(letter)
+
+#Tłumaczenie zdania litera po literze na kod Morse'a, wyświetlanie komunikatów:
+sentence_in_morse_code = ""
+unpermitted_sign = ""
+try:
+    for letter in letters:
+        unpermitted_sign = letter
+        sentence_in_morse_code = sentence_in_morse_code + morse_code[letter_to_morse_code(letter)]
+except TypeError:
+    print(f"Zastosowano niedozwolony znak: {unpermitted_sign}")
+else:
+    print(f"Podane zdanie przetłumaczone na kod Morse'a:\n{sentence_in_morse_code}")
+
+input("Wciśnij Enter, aby zakończyć...")
